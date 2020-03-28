@@ -24,7 +24,7 @@ namespace ParkingManager.Applications.Features.Payments
         }
 
         public bool Delete(PaymentDeleteCommand payment)
-        {
+        { 
             return Repository.Delete(payment.Id);
         }
 

@@ -12,6 +12,8 @@ namespace ParkingManager.Domain.Features.Payments
 
         IQueryable<Payment> GetAll();
 
+        IQueryable<Payment> GetByLicensePlate(string licensePlate);
+
         Payment GetById(long Id);
 
         bool Update(Payment payment);

@@ -41,6 +41,11 @@ namespace ParkingManager.Infra.ORM.Features.Payments
             return Context.Payments.FirstOrDefault(m => m.Id == Id);
         }
 
+        public IQueryable<Payment> GetByLicensePlate(string licensePlate)
+        {
+            return GetAll().Where(x => x.Vehicle.LicensePlate.ToUpper().Contains(licensePlate.ToUpper()));
+        }
+
         public bool Update(Payment payment)
         {
             Context.Entry(payment).State = EntityState.Modified;

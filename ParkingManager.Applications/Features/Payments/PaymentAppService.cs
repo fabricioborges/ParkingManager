@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using ParkingManager.Applications.Features.Payments.Commands;
 using ParkingManager.Domain.Features.Base.Exceptions;
@@ -67,6 +69,11 @@ namespace ParkingManager.Applications.Features.Payments
             paymentEdit.Calculate();
 
             return PaymentRepository.Update(paymentEdit);
+        }
+
+        public List<Payment> GetByLicensePlate(string licensePlate)
+        {
+            return PaymentRepository.GetByLicensePlate(licensePlate).ToList();
         }
     }
 }

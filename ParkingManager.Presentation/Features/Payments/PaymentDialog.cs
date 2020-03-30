@@ -37,9 +37,11 @@ namespace ParkingManager.Presentation.Features.Payments
             PriceAppService = priceAppService;
             PaymentAppService = paymentAppService;
 
-            PopulateDataGridPayment();
+            List<Payment> paymentList = PaymentAppService.GetAll().ToList();
 
-            ConfigureDataGridPayment();            
+            PopulateDataGridPayment(paymentList);
+
+            ConfigureDataGridPayment();
         }
 
         private void ConfigureDataGridPayment()
@@ -54,10 +56,8 @@ namespace ParkingManager.Presentation.Features.Payments
             dgvPayment.Columns[7].HeaderText = "Valor a cobrar:";
         }
 
-        private void PopulateDataGridPayment()
+        private void PopulateDataGridPayment(List<Payment> paymentList)
         {
-            List<Payment> paymentList = PaymentAppService.GetAll().ToList();
-
             List<PaymentViewModel> paymentViewModels = new List<PaymentViewModel>();
 
             foreach (var payment in paymentList)
@@ -82,26 +82,46 @@ namespace ParkingManager.Presentation.Features.Payments
         {
             FormManager = new PriceFormManager(PriceAppService);
             FormManager.Add();
-            PopulateDataGridPayment();
+            List<Payment> paymentList = PaymentAppService.GetAll().ToList();
+            PopulateDataGridPayment(paymentList);
         }
 
         private void btnInput_Click(object sender, EventArgs e)
         {
             FormManager = new VehicleFormManager(VehicleAppService, PaymentAppService);
-            FormManager.Add(); 
-            PopulateDataGridPayment();
+            FormManager.Add();
+            List<Payment> paymentList = PaymentAppService.GetAll().ToList();
+            PopulateDataGridPayment(paymentList);
         }
 
         private void dgvPayment_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             PaymentViewSelected = dgvPayment.CurrentRow.DataBoundItem as PaymentViewModel;
+            btnToExit.Enabled = true;
         }
 
         private void btnToExit_Click(object sender, EventArgs e)
         {
             FormManager = new PaymentFormManager(PaymentAppService, PaymentViewSelected);
             FormManager.Add();
-            PopulateDataGridPayment();
+            List<Payment> paymentList = PaymentAppService.GetAll().ToList();
+            PopulateDataGridPayment(paymentList);
+        }
+
+        private void btnSearchVehicle_Click(object sender, EventArgs e)
+        {
+            var paymentList = PaymentAppService.GetByLicensePlate(txtSearchVehicle.Text);
+            PopulateDataGridPayment(paymentList);
+
+            txtSearchVehicle.Text = "";
+        }
+
+        private void txtSearchVehicle_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrEmpty(txtSearchVehicle.Text))
+                btnSearchVehicle.Enabled = true;
+            else
+                btnSearchVehicle.Enabled = false;
         }
     }
 }

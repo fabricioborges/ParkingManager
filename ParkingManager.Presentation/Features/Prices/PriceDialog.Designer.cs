@@ -36,7 +36,6 @@
             this.mthInitialDate = new System.Windows.Forms.MonthCalendar();
             this.mthFinalDate = new System.Windows.Forms.MonthCalendar();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.txtAdditionalValue = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -97,22 +96,13 @@
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(93, 471);
+            this.btnAdd.Location = new System.Drawing.Point(245, 471);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Cadastrar";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(245, 471);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 10;
-            this.btnCancel.Text = "Cancelar";
-            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // txtAdditionalValue
             // 
@@ -137,7 +127,6 @@
             this.ClientSize = new System.Drawing.Size(406, 501);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtAdditionalValue);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.mthFinalDate);
             this.Controls.Add(this.mthInitialDate);
@@ -163,7 +152,6 @@
         private System.Windows.Forms.MonthCalendar mthInitialDate;
         private System.Windows.Forms.MonthCalendar mthFinalDate;
         private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.TextBox txtAdditionalValue;
         private System.Windows.Forms.Label label5;
     }

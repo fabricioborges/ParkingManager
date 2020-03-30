@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FluentValidation;
+using FluentValidation.Results;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +13,23 @@ namespace ParkingManager.Applications.Features.Payments.Commands
         public long Id { get; set; }
         public long VehicleId { get; set; }
         public long PriceId { get; set; }
-        public TimeSpan ExitTime { get; set; }
+        public DateTime? ExitTime { get; set; }
+        public TimeSpan Duration { get; set; }
         public float Value { get; set; }
+
+        public virtual ValidationResult Validation()
+        {
+            return new PaymentUpdateCommandValidator().Validate(this);
+        }
+
+        class PaymentUpdateCommandValidator : AbstractValidator<PaymentUpdateCommand>
+        {
+            public PaymentUpdateCommandValidator()
+            {
+                RuleFor(x => x.Duration).NotNull().NotEmpty();
+                RuleFor(x => x.ExitTime).NotNull();
+                RuleFor(x => x.Value).NotNull();
+            }
+        }
     }
 }

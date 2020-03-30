@@ -1,4 +1,5 @@
-﻿using ParkingManager.Applications.Features.Vehicles;
+﻿using ParkingManager.Applications.Features.Payments;
+using ParkingManager.Applications.Features.Vehicles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +11,13 @@ namespace ParkingManager.Presentation.Features.Vehicles
 {
     public class VehicleFormManager : FormManager
     {
-        private VehicleAppService AppService;
+        private VehicleAppService VehicleAppService;
+        private PaymentAppService PaymentAppService;
 
-        public VehicleFormManager(VehicleAppService appService)
+        public VehicleFormManager(VehicleAppService vehicleAppService, PaymentAppService paymentAppService)
         {
-            AppService = appService;
+            VehicleAppService = vehicleAppService;
+            PaymentAppService = paymentAppService;
         }
 
         public override void Add()
@@ -25,7 +28,11 @@ namespace ParkingManager.Presentation.Features.Vehicles
 
             if (result == DialogResult.OK)
             {
-                AppService.Add(vehicleDialog.addCommand);
+                var id = VehicleAppService.Add(vehicleDialog.addCommand);
+
+                var command = PaymentAppService.BuildCommand(id);
+
+                PaymentAppService.Add(command);
             }
         }
 

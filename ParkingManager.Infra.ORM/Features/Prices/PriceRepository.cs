@@ -40,6 +40,11 @@ namespace ParkingManager.Infra.ORM.Features.Prices
             return Context.Prices;
         }
 
+        public long GetByDateInput(DateTime vehicleInput)
+        {
+            return GetAll().FirstOrDefault(x => x.InitialDate <= vehicleInput && x.FinalDate >= vehicleInput).Id;
+        }
+
         public Price GetById(long Id)
         {
             return Context.Prices.FirstOrDefault(m => m.Id == Id);

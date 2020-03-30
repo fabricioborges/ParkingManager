@@ -10,7 +10,7 @@ namespace ParkingManager.Applications.Features.Payments.Commands
     {
         public long VehicleId { get; set; }
         public long PriceId { get; set; }
-        public TimeSpan ExitTime { get; set; }
+        public DateTime? ExitTime { get; set; }
         public float Value { get; set; }
     }
 }

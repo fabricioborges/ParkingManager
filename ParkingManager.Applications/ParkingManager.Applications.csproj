@@ -62,6 +62,7 @@
     <Compile Include="Features\Payments\IPaymentAppService.cs" />
     <Compile Include="Features\Payments\Mapping\MappingProfile.cs" />
     <Compile Include="Features\Payments\PaymentAppService.cs" />
+    <Compile Include="Features\Payments\ViewModels\PaymentViewModel.cs" />
     <Compile Include="Features\Prices\Commands\PriceAddCommand.cs" />
     <Compile Include="Features\Prices\Commands\PriceDeleteCommand.cs" />
     <Compile Include="Features\Prices\Commands\PriceUpdateCommand.cs" />

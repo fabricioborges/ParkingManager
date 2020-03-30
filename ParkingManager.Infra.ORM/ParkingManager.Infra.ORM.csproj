@@ -63,6 +63,18 @@
     <Compile Include="Migrations\202003281726484_InitialCreate.designer.cs">
       <DependentUpon>202003281726484_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003291942127_addPayment.cs" />
+    <Compile Include="Migrations\202003291942127_addPayment.designer.cs">
+      <DependentUpon>202003291942127_addPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003292225051_DurationPayment.cs" />
+    <Compile Include="Migrations\202003292225051_DurationPayment.designer.cs">
+      <DependentUpon>202003292225051_DurationPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003292227447_nullableExitDate.cs" />
+    <Compile Include="Migrations\202003292227447_nullableExitDate.designer.cs">
+      <DependentUpon>202003292227447_nullableExitDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -73,15 +85,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003281726484_InitialCreate.resx">
-      <DependentUpon>202003281726484_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003281726484_InitialCreate.resx">
+      <DependentUpon>202003281726484_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003291942127_addPayment.resx">
+      <DependentUpon>202003291942127_addPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003292225051_DurationPayment.resx">
+      <DependentUpon>202003292225051_DurationPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003292227447_nullableExitDate.resx">
+      <DependentUpon>202003292227447_nullableExitDate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

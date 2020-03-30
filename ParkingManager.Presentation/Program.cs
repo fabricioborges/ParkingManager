@@ -1,10 +1,12 @@
 ﻿using ParkingManager.Application.Config;
 using ParkingManager.Application.Features.Prices;
+using ParkingManager.Applications.Features.Payments;
 using ParkingManager.Applications.Features.Vehicles;
 using ParkingManager.Infra.ORM.Context;
+using ParkingManager.Infra.ORM.Features.Payments;
 using ParkingManager.Infra.ORM.Features.Prices;
 using ParkingManager.Infra.ORM.Features.Vehicles;
-using ParkingManager.Presentation.Features.Managers;
+using ParkingManager.Presentation.Features.Payments;
 using ParkingManager.Presentation.Features.Prices;
 using ParkingManager.Presentation.Features.Vehicles;
 using System;
@@ -21,6 +23,8 @@ namespace ParkingManager.Presentation
         private static VehicleAppService VehicleAppService;
         private static PriceRepository PriceRepository;
         private static PriceAppService PriceAppService;
+        private static PaymentRepository PaymentRepository;
+        private static PaymentAppService PaymentAppService;
         private static ParkingManagerContext Context;
         
         /// <summary>
@@ -37,7 +41,9 @@ namespace ParkingManager.Presentation
             VehicleAppService = new VehicleAppService(VehicleRepository);
             PriceRepository = new PriceRepository(Context);
             PriceAppService = new PriceAppService(PriceRepository);
-            System.Windows.Forms.Application.Run(new Manager(PriceAppService, VehicleAppService));
+            PaymentRepository = new PaymentRepository(Context);
+            PaymentAppService = new PaymentAppService(PaymentRepository, VehicleRepository, PriceRepository);
+            System.Windows.Forms.Application.Run(new PaymentDialog(PriceAppService, VehicleAppService, PaymentAppService));
         }
     }
 }

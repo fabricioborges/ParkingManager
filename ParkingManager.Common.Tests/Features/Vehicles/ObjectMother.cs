@@ -16,7 +16,7 @@ namespace ParkingManager.Common.Tests.Features
             {
                 return new Vehicle()
                 {
-                    Input = DateTime.Now.AddHours(-1),
+                    Input = DateTime.Now,
                     LicensePlate = "abc123"
                 };
             }

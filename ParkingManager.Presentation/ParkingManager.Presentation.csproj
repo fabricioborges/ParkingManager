@@ -62,12 +62,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Features\Managers\Manager.cs">
+    <Compile Include="Features\Payments\PaymentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Features\Payments\PaymentControl.Designer.cs">
+      <DependentUpon>PaymentControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Payments\PaymentDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Features\Managers\Manager.Designer.cs">
-      <DependentUpon>Manager.cs</DependentUpon>
+    <Compile Include="Features\Payments\PaymentDialog.Designer.cs">
+      <DependentUpon>PaymentDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Features\Payments\PaymentExitDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Features\Payments\PaymentExitDialog.Designer.cs">
+      <DependentUpon>PaymentExitDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Features\Payments\PaymentFormManager.cs" />
     <Compile Include="Features\Prices\PriceControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -97,8 +110,11 @@
     <Compile Include="FormManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Features\Managers\Manager.resx">
-      <DependentUpon>Manager.cs</DependentUpon>
+    <EmbeddedResource Include="Features\Payments\PaymentDialog.resx">
+      <DependentUpon>PaymentDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Features\Payments\PaymentExitDialog.resx">
+      <DependentUpon>PaymentExitDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Features\Prices\PriceDialog.resx">
       <DependentUpon>PriceDialog.cs</DependentUpon>
@@ -129,9 +145,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Features\Payments\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\ParkingManager.Applications\ParkingManager.Applications.csproj">
       <Project>{A013710B-A694-48E0-B2CB-078639E17449}</Project>

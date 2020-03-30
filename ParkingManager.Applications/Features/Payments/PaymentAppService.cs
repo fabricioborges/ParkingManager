@@ -3,50 +3,70 @@ using AutoMapper;
 using ParkingManager.Applications.Features.Payments.Commands;
 using ParkingManager.Domain.Features.Base.Exceptions;
 using ParkingManager.Domain.Features.Payments;
+using ParkingManager.Domain.Features.Prices;
+using ParkingManager.Domain.Features.Vehicles;
 
 namespace ParkingManager.Applications.Features.Payments
 {
     public class PaymentAppService : IPaymentAppService
     {
-        IPaymentRepository Repository;
+        IPaymentRepository PaymentRepository;
+        IVehicleRepository VehicleRepository;
+        IPriceRepository PriceRepository;
 
-        public PaymentAppService(IPaymentRepository paymentRepository)
+        public PaymentAppService(IPaymentRepository paymentRepository, IVehicleRepository vehicleRepository, IPriceRepository priceRepository)
         {
-            Repository = paymentRepository;
+            PaymentRepository = paymentRepository;
+            VehicleRepository = vehicleRepository;
+            PriceRepository = priceRepository;
         }
 
         public long Add(PaymentAddCommand payment)
         {
             var paymentAdd = Mapper.Map<PaymentAddCommand, Payment>(payment);
-            var newPayment = Repository.Add(paymentAdd);
+            var newPayment = PaymentRepository.Add(paymentAdd);
 
             return newPayment.Id;
         }
 
+        public PaymentAddCommand BuildCommand(long vehicleId)
+        {
+            var vehicleInput = VehicleRepository.GetById(vehicleId).Input;
+
+            var priceId = PriceRepository.GetByDateInput(vehicleInput);
+
+            return new PaymentAddCommand()
+            {
+                PriceId = priceId,
+                VehicleId = vehicleId
+            };
+        }
+
         public bool Delete(PaymentDeleteCommand payment)
         { 
-            return Repository.Delete(payment.Id);
+            return PaymentRepository.Delete(payment.Id);
         }
 
         public IQueryable<Payment> GetAll()
         {
-            return Repository.GetAll();
+            return PaymentRepository.GetAll();
         }
 
         public Payment GetById(long Id)
         {
-            return Repository.GetById(Id);
+            return PaymentRepository.GetById(Id);
         }
 
         public bool Update(PaymentUpdateCommand payment)
         {
-            var paymentDb = Repository.GetById(payment.Id);
+            var paymentDb = PaymentRepository.GetById(payment.Id);
             if (paymentDb == null)
                 throw new NotFoundException("Registro não encontrado!");
 
             var paymentEdit = Mapper.Map(payment, paymentDb);
+            paymentEdit.Calculate();
 
-            return Repository.Update(paymentEdit);
+            return PaymentRepository.Update(paymentEdit);
         }
     }
 }

@@ -10,6 +10,8 @@ namespace ParkingManager.Applications.Features.Payments
 {
     public interface IPaymentAppService
     {
+        PaymentAddCommand BuildCommand(long vehicleId);
+
         long Add(PaymentAddCommand payment);
 
         IQueryable<Payment> GetAll();

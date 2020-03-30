@@ -6,6 +6,8 @@ using ParkingManager.Applications.Features.Payments;
 using ParkingManager.Common.Tests.Features;
 using ParkingManager.Domain.Features.Base.Exceptions;
 using ParkingManager.Domain.Features.Payments;
+using ParkingManager.Domain.Features.Prices;
+using ParkingManager.Domain.Features.Vehicles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,13 +20,17 @@ namespace ParkingManager.Application.Tests.Features.Payments
     public class PaymentAppServiceTest : TestBase
     {
         Mock<IPaymentRepository> _repository;
-        PaymentAppService _appService;
+        Mock<IVehicleRepository> _vehicleRepository;
+        Mock<IPriceRepository> _priceRepository;
+         PaymentAppService _appService;
 
         [SetUp]
         public void SetUp()
         {
             _repository = new Mock<IPaymentRepository>();
-            _appService = new PaymentAppService(_repository.Object);
+            _vehicleRepository = new Mock<IVehicleRepository>();
+            _priceRepository = new Mock<IPriceRepository>();
+            _appService = new PaymentAppService(_repository.Object, _vehicleRepository.Object, _priceRepository.Object);
         }
 
         [Test]

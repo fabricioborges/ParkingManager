@@ -15,9 +15,28 @@ namespace ParkingManager.Domain.Features.Payments
         public long VehicleId { get; set; }
         public virtual Price Price { get; set; }
         public long PriceId { get; set; }
-        public TimeSpan ExitTime { get; set; }
+        public DateTime? ExitTime { get; set; }
+        public TimeSpan Duration { get; set; }
         public float Value { get; set; }
 
-        
+        public void Calculate()
+        {
+            Duration = ExitTime.Value - Vehicle.Input;
+            var hours = Duration.Hours;
+            var minutes = Duration.Minutes;
+            var targetMinutes = 30;
+
+            if (hours >= 1)
+            {
+                Value = Price.InitialValue;
+
+                if (10 < minutes)
+                    Value += hours * Price.AdditionalValue;
+            }
+            else if (10 >= minutes)
+                Value = 0;
+            else if (targetMinutes >= minutes)
+                Value = Price.InitialValue / 2;
+        }
     }
 }

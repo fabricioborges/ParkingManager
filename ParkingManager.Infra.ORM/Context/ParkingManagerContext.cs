@@ -13,7 +13,7 @@ namespace ParkingManager.Infra.ORM.Context
 {
     public class ParkingManagerContext : DbContext
     {
-        public ParkingManagerContext() : base("Estacionamento_Db")
+        public ParkingManagerContext() : base("ParkingManager_Db")
         {
             Configuration.LazyLoadingEnabled = true;
         }

@@ -12,6 +12,8 @@ namespace ParkingManager.Domain.Features.Prices
 
         IQueryable<Price> GetAll();
 
+        long GetByDateInput(DateTime vehicleInput);
+
         Price GetById(long Id);
 
         bool Update(Price price);

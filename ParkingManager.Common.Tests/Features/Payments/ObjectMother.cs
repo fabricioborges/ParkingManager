@@ -19,7 +19,7 @@ namespace ParkingManager.Common.Tests.Features
                     Vehicle = VehicleDefault,
                     Price = PriceDefault,
                     Value = 5,
-                    ExitTime = TimeSpan.FromHours(1),
+                    Duration = TimeSpan.FromHours(1),
                     PriceId = 1,
                     VehicleId = 1
                 };
@@ -33,7 +33,7 @@ namespace ParkingManager.Common.Tests.Features
                 return new PaymentAddCommand()
                 {
                     Value = 5,
-                    ExitTime = TimeSpan.FromHours(1),
+                    ExitTime = DateTime.Now,
                     PriceId = 1,
                     VehicleId = 1
                 };
@@ -47,7 +47,7 @@ namespace ParkingManager.Common.Tests.Features
                 return new PaymentUpdateCommand()
                 {
                     Value = 5,
-                    ExitTime = TimeSpan.FromHours(1),
+                    ExitTime = DateTime.Now,
                     PriceId = 1,
                     VehicleId = 1
                 };

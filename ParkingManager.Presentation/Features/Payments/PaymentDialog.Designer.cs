@@ -37,6 +37,7 @@
             this.txtSearchVehicle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSearchVehicle = new System.Windows.Forms.Button();
+            this.btnClearSearch = new System.Windows.Forms.Button();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPayment)).BeginInit();
             this.SuspendLayout();
@@ -119,11 +120,22 @@
             this.btnSearchVehicle.UseVisualStyleBackColor = true;
             this.btnSearchVehicle.Click += new System.EventHandler(this.btnSearchVehicle_Click);
             // 
+            // btnClearSearch
+            // 
+            this.btnClearSearch.Location = new System.Drawing.Point(321, 70);
+            this.btnClearSearch.Name = "btnClearSearch";
+            this.btnClearSearch.Size = new System.Drawing.Size(122, 23);
+            this.btnClearSearch.TabIndex = 7;
+            this.btnClearSearch.Text = "limpar busca";
+            this.btnClearSearch.UseVisualStyleBackColor = true;
+            this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
+            // 
             // PaymentDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 337);
+            this.Controls.Add(this.btnClearSearch);
             this.Controls.Add(this.btnSearchVehicle);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSearchVehicle);
@@ -151,5 +163,6 @@
         private System.Windows.Forms.TextBox txtSearchVehicle;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSearchVehicle;
+        private System.Windows.Forms.Button btnClearSearch;
     }
 }

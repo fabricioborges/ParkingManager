@@ -123,5 +123,12 @@ namespace ParkingManager.Presentation.Features.Payments
             else
                 btnSearchVehicle.Enabled = false;
         }
+
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            txtSearchVehicle.Text = "";
+            List<Payment> paymentList = PaymentAppService.GetAll().ToList();
+            PopulateDataGridPayment(paymentList);
+        }
     }
 }
